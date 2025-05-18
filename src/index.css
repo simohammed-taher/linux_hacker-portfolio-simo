@@ -1,0 +1,181 @@
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 0 0% 95%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 168 100% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 140 100% 50%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 223 47% 20%;
+    --muted-foreground: 215.4 16.3% 70%;
+
+    --accent: 277 100% 67%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 223 47% 20%;
+    --input: 223 47% 20%;
+    --ring: 168 100% 58%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 240 5.3% 90%;
+    --sidebar-primary: 168 100% 58%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 223 47% 20%;
+    --sidebar-accent-foreground: 240 5.9% 90%;
+    --sidebar-border: 223 47% 20%;
+    --sidebar-ring: 168 100% 58%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-terminal-bg text-terminal-text font-mono scroll-smooth;
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.terminal.border') theme('colors.terminal.bg');
+    background-image: 
+      repeating-linear-gradient(
+        transparent, 
+        transparent 3px, 
+        rgba(60, 255, 85, 0.03) 3px, 
+        rgba(60, 255, 85, 0.03) 6px
+      );
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-terminal-bg;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-terminal-border rounded;
+  }
+
+  ::selection {
+    @apply bg-terminal-green/30 text-white;
+  }
+  
+  .typed-cursor {
+    @apply animate-cursor-blink;
+  }
+
+  .terminal {
+    @apply border border-terminal-border rounded-md overflow-hidden bg-terminal-bg;
+    box-shadow: 0 0 15px rgba(60, 255, 85, 0.15), inset 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .terminal-header {
+    @apply bg-terminal-header px-4 py-2 flex items-center justify-between border-b border-terminal-border;
+    background-image: linear-gradient(to bottom, rgba(60, 255, 85, 0.05), transparent);
+  }
+
+  .terminal-dots {
+    @apply flex gap-2;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+    box-shadow: 0 0 2px currentColor;
+  }
+
+  .terminal-body {
+    @apply overflow-auto;
+    background-image: 
+      radial-gradient(
+        circle at 50% 0%, 
+        rgba(60, 255, 85, 0.05) 0%, 
+        rgba(0, 0, 0, 0) 75%
+      );
+  }
+
+  .prompt {
+    @apply text-terminal-prompt font-medium;
+  }
+
+  .command {
+    @apply text-terminal-command;
+  }
+
+  .command-output {
+    @apply text-terminal-output pl-6;
+  }
+
+  .error {
+    @apply text-terminal-error;
+  }
+
+  .typing-animation {
+    @apply overflow-hidden whitespace-nowrap animate-typing;
+    border-right: 0.15em solid theme('colors.terminal.text');
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 0.5s ease-out forwards;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
